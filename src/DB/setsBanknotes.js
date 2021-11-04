@@ -1,0 +1,58 @@
+const setsBanknotes = [
+    {
+        fifty: 10000,
+        hundred: 8000,
+        twoHundred: 5000,
+        fiveHundred: 3000,
+        thousand: 1000,
+        twoThousand: 400,
+        fiveThousand: 100,
+    },
+    {
+        fifty: 3450,
+        hundred: 1643,
+        twoHundred: 234,
+        fiveHundred: 4362,
+        thousand: 6741,
+        twoThousand: 345,
+        fiveThousand: 467,
+    },
+    {
+        fifty: 234,
+        hundred: 2345,
+        twoHundred: 9654,
+        fiveHundred: 2451,
+        thousand: 845,
+        twoThousand: 678,
+        fiveThousand: 234,
+    },
+    {
+        fifty: 342,
+        hundred: 124,
+        twoHundred: 2154,
+        fiveHundred: 4365,
+        thousand: 2543,
+        twoThousand: 562,
+        fiveThousand: 546,
+    },
+    {
+        fifty: 3854,
+        hundred: 1257,
+        twoHundred: 3296,
+        fiveHundred: 7556,
+        thousand: 479,
+        twoThousand: 347,
+        fiveThousand: 2732,
+    },
+    {
+        fifty: 854,
+        hundred: 857,
+        twoHundred: 696,
+        fiveHundred: 356,
+        thousand: 279,
+        twoThousand: 147,
+        fiveThousand: 73,
+    },
+]
+
+export default setsBanknotes;

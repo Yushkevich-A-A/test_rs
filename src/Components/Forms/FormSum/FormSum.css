@@ -1,0 +1,36 @@
+.input-block {
+    display: flex;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.numpad-block,
+.input-form {
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(238, 236, 236);
+    border-radius: 10px;
+}
+
+.input-label {
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.button-submit {
+    background-color: transparent;
+    border: none;
+}
+
+.button-submit:focus-visible {
+    outline: none;
+}
+
+
+.button-submit {
+    margin-top: 10px;
+}

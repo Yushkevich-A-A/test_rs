@@ -7,3 +7,56 @@
     border-radius: 10px;
     background-color: #fff;
 }
+
+.main-page-act-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-button-mode {
+    display: flex;
+}
+
+.sets-mode {
+    position: relative;
+}
+
+.display-output-bankotes {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.display-output-bankotes-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.info-output-fields {
+    display: flex;
+    justify-content: space-around;
+}
+
+.sum-block {
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(238, 236, 236);
+    border-radius: 10px;
+}
+
+.sum-title {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sum-field {
+    width: 100%;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+

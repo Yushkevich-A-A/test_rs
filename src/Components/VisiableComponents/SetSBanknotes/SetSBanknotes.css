@@ -1,0 +1,14 @@
+.sets-banknotes {
+    position: absolute;
+}
+
+.set-banknotes {
+    width: 100px;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    margin: 5px;
+    box-shadow: 1px 2px 4px grey;
+    user-select: none;
+}
