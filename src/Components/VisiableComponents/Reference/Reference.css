@@ -1,0 +1,68 @@
+.reference-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reference-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.2;
+}
+
+.reference {
+    position: relative;
+    border: 1px solid grey;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1;
+}
+
+.reference-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 36px;
+    margin-bottom: 30px;
+
+}
+
+.reference-all-banknotes {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+.close-reference {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #fff;
+    border: none;
+}
+
+.close-reference:focus-visible {
+    outline: none;
+} 
+
+.close-reference::after {
+    content: '\2718';
+    color: red;
+    font-size: 36px;
+}

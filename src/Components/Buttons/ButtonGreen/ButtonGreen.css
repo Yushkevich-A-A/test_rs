@@ -1,0 +1,12 @@
+.button-green {
+    background-color: rgb(31, 126, 44);
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px 15px;
+    color: white;
+}
+
+.button-grey:focus-visible {
+    outline: none;
+}

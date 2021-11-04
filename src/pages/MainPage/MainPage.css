@@ -1,0 +1,9 @@
+.main-page {
+    position: relative;
+    width: 900px;
+    height: 600px;
+    padding: 30px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+}

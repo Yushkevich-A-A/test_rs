@@ -1,0 +1,17 @@
+.banknote-twothousand {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: inline-block;
+    border: 1px solid #000;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.banknote-twothousand-span {
+    text-align: center;
+    display: inline-block;
+    width: 60px;
+    background-color: #00c3ff;
+    color: white;
+    font-size: 24px;
+}
