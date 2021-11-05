@@ -5,46 +5,33 @@ import ButtonGrey from '../../Components/Buttons/ButtonGrey/ButtonGrey';
 import VisionAllBunknotes from '../../Components/VisionAllBunknotes/VisionAllBunknotes';
 import Reference from '../../Components/VisiableComponents/Reference/Reference';
 import ButtonGreen from '../../Components/Buttons/ButtonGreen/ButtonGreen';
-import SetSBanknotes from '../../Components/VisiableComponents/SetSBanknotes/SetSBanknotes';
+import SetSBanknotes from '../../Components/VisiableComponents/SetListBanknotes/SetListBanknotes';
 import FormSum from '../../Components/Forms/FormSum/FormSum';
+import BlockButtonMode from '../../Components/VisiableComponents/BlockButtonMode/BlockButtonMode';
+import InfoOutputFields from '../../Components/VisiableComponents/InfoOutputFields/InfoOutputFields';
+import { useSelector } from 'react-redux';
 
 function MainPage(props) {
     const [ referense, setReference ] = useState( false );
-    const [ mode, setMode ] = useState( false );
+    const { requiredBanknotes } = useSelector( state => state.serviceBanknotes );
 
     const handleTriggerReference = () => {
         setReference(!referense);
     }
 
-    const handleTriggerMode = () => {
-        setMode(!mode);
-    }
-
     return (
         <div className='main-page'>
             <div className="main-page-act-buttons">
-                <div className="block-button-mode">
-                    <ButtonGreen name={'набор купюр'} handleClick={handleTriggerMode} />
-                    <div className="sets-mode">{mode && <SetSBanknotes />}</div>
-                </div>
+                <BlockButtonMode />
                 <ButtonGrey name={'справка'} handleClick={handleTriggerReference}/>
             </div>
             <div className="display-output-bankotes">
                 <div className="display-output-bankotes-title">
                     Банкноты, подготовленные к выдаче:
                 </div>
-                <VisionAllBunknotes />
+                <VisionAllBunknotes banknotes={requiredBanknotes}/>
             </div>
-            <div className="info-output-fields">
-                <div className="sum-block">
-                    <div className="sum-title">Сумма готовая к выдаче</div>
-                    <div className="sum-field">1000</div>
-                </div>
-                <div className="sum-block">
-                    <div className="sum-title">Невыданная сумма</div>
-                    <div className="sum-field">10,2</div>
-                </div>
-            </div>
+            <InfoOutputFields />
             <FormSum />
             {referense && <Reference handleClick={handleTriggerReference}/>}
         </div>

@@ -1,19 +1,46 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useRef, useState } from 'react';
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen';
 import './FormSum.css';
 import Numpad from '../../Numpad/Numpad';
+import { useDispatch, useSelector } from 'react-redux';
+import { inputRequestSum } from '../../../reduxFold/actions/actionCreator';
+import { parserBanknotes } from '../../../functions/functions';
 
 function FormSum(props) {
+    const { banknotes } = useSelector( state => state.serviceBanknotes);
+    const dispatch = useDispatch();
+    const [ value, setValue ] = useState(0);
+    const currentRef = useRef(null);
 
-    const [ value, setValue ] = useState(0)
+    useEffect(() => {
+        const requiredSum = parseFloat(value) || 0;
+        const { requiredBanknotes, remains } = parserBanknotes(requiredSum, banknotes);
+        dispatch(inputRequestSum( requiredSum, requiredBanknotes, remains ));
+    }, [value])
 
     const handleSubmit = (e) => {
         e.preventDefault();
     }
-
+    
     const handleChange = (e) => {
-        setValue(e.target.value);
+        const inputValue = e.target.value.replace(/[^0-9\.]/g, '');
+        setValue(inputValue);
+    }
+
+    const addValue = (val) => {
+        currentRef.current.focus();
+        if (val === '.' && value.toString().includes(val)) {
+            return;
+        }
+        setValue(value.toString() + val);
+    }
+
+    const removeValue = () => {
+        currentRef.current.focus();
+        if (value.length === 0) {
+            return;
+        }
+        setValue(value.slice(0, value.length - 1));
     }
 
     return (
@@ -23,27 +50,20 @@ function FormSum(props) {
                     <label htmlFor="field-sum" className='input-label'>
                         Ведите сумму для снятия
                     </label>
-                    <input className='field-input-sum' 
-                    name='field-sum' 
-                    id='field-sum' 
-                    type='number' 
-                    value={value} 
-                    onChange={handleChange}/>
+                    <input className='field-input-sum' name='field-sum' 
+                    id='field-sum' value={value} onChange={handleChange}
+                    placeholder='0' ref={currentRef}/>
                 </div>
                 <button className='button-submit'>
                     <ButtonGreen name={'выдача'}/>
                 </button>
             </form>
             <div className="numpad-block">
-                <Numpad />
+                <Numpad addValue={addValue} removeValue={removeValue}/>
             </div>
         </div>
     )
 }
 
-FormSum.propTypes = {
-
-}
-
-export default FormSum
+export default FormSum;
 

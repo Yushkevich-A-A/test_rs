@@ -12,7 +12,7 @@ import './VisionAllBunknotes.css';
 
 function VisionAllBunknotes(props) {
     const { banknotes } = props;
-
+    
     return (
         <div className='block-vision-all-banknotes'>
             <BunknotesCounter count={banknotes.fifty}>
