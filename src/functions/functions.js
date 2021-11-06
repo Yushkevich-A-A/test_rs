@@ -81,7 +81,7 @@ export function parserBanknotes(value, avaliableBanknotesInput) {
     return { requiredBanknotes, remains }
 }   
 
-// при использовании алгоритма где в равной степени расходуются купюры, эта функция бесполезна
+// функция для получения купюр по жадному методу от большего к меньшему
 
 const getAmountBanknotesAndRemains = (value, banknote, avaliableBanknotes) => {
     let banknotesCount = null;
