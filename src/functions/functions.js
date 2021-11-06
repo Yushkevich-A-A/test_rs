@@ -8,67 +8,34 @@ export function parserBanknotes(value, currentBanknotes) {
         twoThousand: 0,
         fiveThousand: 0,
     };
-    // const currentBanknotes = {...currentBanknotes};
 
-
-    const fifty = 50;
-    const hundred = 100;
-    const twoHundred = 200;
-    const fiveHundred = 500;
-    const thousand = 1000;
-    const twoThousand = 2000;
-    const fiveThousand = 5000;
+    const arrayBanknotes = [5000, 2000, 1000, 500, 200, 100, 50];
+    const arrayKeysInObject = Object.keys(requiredBanknotes).reverse();
+    const sumInBank = arrayBanknotes.map(
+        (item, ind) => item * currentBanknotes[arrayKeysInObject[ind]]
+        ).reduce( (sum, acc) => sum + acc, 0 );
+    if ( sumInBank <= value) {
+        const remains = value - sumInBank;;
+        const requiredBanknotes = {...currentBanknotes};
+        return { requiredBanknotes, remains };
+    }
 
     let remains = value;
-    
-    if (remains >= fiveThousand) {
-        console.log(fiveThousand);
-        const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, fiveThousand, currentBanknotes.fiveThousand );
-        remains = remainsValue;
-        requiredBanknotes.fiveThousand = banknotesCount;
-        console.log('зашли в функцию')
-    }
 
-    if (remains >= twoThousand) {
-        const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, twoThousand, currentBanknotes.twoThousand );
-        remains = remainsValue;
-        requiredBanknotes.twoThousand = banknotesCount;
-    }
-
-    if (remains >= thousand) {
-        const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, thousand, currentBanknotes.thousand );
-        remains = remainsValue;
-        requiredBanknotes.thousand = banknotesCount;
-    }
-
-    if (remains >= fiveHundred) {
-        const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, fiveHundred, currentBanknotes.fiveHundred );
-        remains = remainsValue;
-        requiredBanknotes.fiveHundred = banknotesCount;
-    }
-
-    if (remains >= twoHundred) {
-        const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, twoHundred, currentBanknotes.twoHundred );
-        remains = remainsValue;
-        requiredBanknotes.twoHundred = banknotesCount;
-    }
-
-    if (remains >= hundred) {
-        const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, hundred, currentBanknotes.hundred );
-        remains = remainsValue;
-        requiredBanknotes.hundred = banknotesCount;
-    }
-
-    if (remains >= fifty) {
-        const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, fifty, currentBanknotes.fifty );
-        remains = remainsValue;
-        requiredBanknotes.fifty = banknotesCount;
-    }
-    return { requiredBanknotes, remains }
+    arrayBanknotes.forEach( (item, index) => {
+        if (remains >= item ) {
+            const textNameBanknotes = arrayKeysInObject[index];
+            const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, item, currentBanknotes[textNameBanknotes] );
+            remains = remainsValue;
+            requiredBanknotes[textNameBanknotes] = banknotesCount;
+        }
+    } );
+        return { requiredBanknotes, remains }
 }   
 
+// при использовании алгоритма где в равной степени расходуются купюры, эта функция бесполезна
+
 const getAmountBanknotesAndRemains = (value, banknote, avaliableBanknotes) => {
-    console.log()
     let banknotesCount = null;
     let remainsValue = value % banknote;
     const resultAmount = (value - remainsValue) / banknote;

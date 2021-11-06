@@ -3,16 +3,20 @@ import PropTypes from 'prop-types';
 import './ButtonGreen.css';
 
 function ButtonGreen(props) {
-    const { name, handleClick } = props;
+    const { name, handleClick, typeButton } = props;
     return (
-        <button className='button-green' onClick={handleClick}>
+        <button type={typeButton} className='button-green' onClick={handleClick}>
             {name.toLowerCase()}
         </button>
     )
 }
 
-ButtonGreen.propTypes = {
+ButtonGreen.defaultProps = {
+    typeButton: 'button',
+ }
 
+ButtonGreen.propTypes = {
+    
 };
 
 export default ButtonGreen;

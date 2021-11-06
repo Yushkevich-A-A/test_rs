@@ -13,24 +13,14 @@
     border-radius: 10px;
 }
 
+.input-block-field {
+    margin-bottom: 10px;
+}
+
 .input-label {
     display: block;
     text-align: center;
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 10px;
-}
-
-.button-submit {
-    background-color: transparent;
-    border: none;
-}
-
-.button-submit:focus-visible {
-    outline: none;
-}
-
-
-.button-submit {
-    margin-top: 10px;
 }

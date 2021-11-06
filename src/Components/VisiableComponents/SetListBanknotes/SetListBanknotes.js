@@ -11,7 +11,6 @@ function SetListBanknotes(props) {
     const { amountSets } = useSelector( state => state.serviceBanknotes);
     const dispatch = useDispatch();
     const setsBancnotesList = new Array(amountSets).fill({}).map( item => { return {...item, id:nanoid() }});
-    console.log(setsBancnotesList)
     const handleClick = (id) => {
         handleTriggerMode(false);
         dispatch(changeSetBanknotes(id))

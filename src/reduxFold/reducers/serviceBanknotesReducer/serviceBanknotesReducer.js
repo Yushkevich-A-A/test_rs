@@ -29,6 +29,11 @@ export const serviceBanknotesReducer = (state = initState, action) => {
             const sumToIssue = inputSum - cancelleAmount;
             console.log(inputSum, requiredBanknotes, cancelleAmount);
             return {...state, inputSum, requiredBanknotes, cancelleAmount, sumToIssue };
+        case 'WITHDRAWAL_OF_THE_AMOUNT':
+            const requiredBanknotesCount = {};
+            const banknotesArray = Object.keys(state.banknotes);
+            banknotesArray.forEach( item => requiredBanknotesCount[item] = state.banknotes[item] - state.requiredBanknotes[item])
+            return {...initState, banknotes: {...requiredBanknotesCount}};
         default: 
             return {...state};
     }

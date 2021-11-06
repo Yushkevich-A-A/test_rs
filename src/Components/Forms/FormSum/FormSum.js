@@ -3,16 +3,20 @@ import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen';
 import './FormSum.css';
 import Numpad from '../../Numpad/Numpad';
 import { useDispatch, useSelector } from 'react-redux';
-import { inputRequestSum } from '../../../reduxFold/actions/actionCreator';
+import { inputRequestSum, withdrawalOfTheAmount } from '../../../reduxFold/actions/actionCreator';
 import { parserBanknotes } from '../../../functions/functions';
 
 function FormSum(props) {
-    const { banknotes } = useSelector( state => state.serviceBanknotes);
+    const { banknotes, inputSum } = useSelector( state => state.serviceBanknotes);
     const dispatch = useDispatch();
-    const [ value, setValue ] = useState(0);
+    const [ value, setValue ] = useState(inputSum);
     const currentRef = useRef(null);
+    console.log(inputSum);
 
     useEffect(() => {
+        if (value === 0) {
+            return;
+        }
         const requiredSum = parseFloat(value) || 0;
         const { requiredBanknotes, remains } = parserBanknotes(requiredSum, banknotes);
         dispatch(inputRequestSum( requiredSum, requiredBanknotes, remains ));
@@ -20,6 +24,8 @@ function FormSum(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(withdrawalOfTheAmount());
+        setValue('');
     }
     
     const handleChange = (e) => {
@@ -52,11 +58,9 @@ function FormSum(props) {
                     </label>
                     <input className='field-input-sum' name='field-sum' 
                     id='field-sum' value={value} onChange={handleChange}
-                    placeholder='0' ref={currentRef}/>
+                    placeholder='0' ref={currentRef} maxLength='12'/>
                 </div>
-                <button className='button-submit'>
-                    <ButtonGreen name={'выдача'}/>
-                </button>
+                <ButtonGreen name={'выдача'} typeButton={'submit'}/>
             </form>
             <div className="numpad-block">
                 <Numpad addValue={addValue} removeValue={removeValue}/>
