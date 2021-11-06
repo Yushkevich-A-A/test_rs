@@ -28,14 +28,8 @@ function FormSum(props) {
     }
     
     const handleChange = (e) => {
-        const inputValue = e.target.value.replace(/[^0-9\.]/g, '');
-
-
-        console.log(parseFloat(inputValue));
-        if (parseFloat(inputValue) > 200000) {
-            return setValue(200000);
-        }
-        setValue(inputValue);
+        const inputValue = e.target.value.replace(/[^0-9\.]/g, '');s
+        handleSetState(value.slice(0, value.length - 1))
     }
 
     const addValue = (val) => {
@@ -45,10 +39,7 @@ function FormSum(props) {
         }
         const newValue = value.toString() + val;
 
-        if (parseFloat(newValue) > 200000) {
-            return setValue(200000);
-        }
-        setValue(newValue);
+        handleSetState(value.slice(0, value.length - 1))
     }
 
     const removeValue = () => {
@@ -56,8 +47,11 @@ function FormSum(props) {
         if (value.length === 0) {
             return;
         }
-        const newValue = value.slice(0, value.length - 1)
-        if (parseFloat(newValue) > 200000) {
+        handleSetState(value.slice(0, value.length - 1))
+    }
+
+    const handleSetState = (val) => {
+        if (parseFloat(val) > 200000) {
             return setValue(200000);
         }
         setValue(newValue);
