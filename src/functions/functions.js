@@ -31,10 +31,10 @@ export function parserBanknotes(value, avaliableBanknotesInput) {
     // Получаю процентное соотношение сумм разных купюр в банке
     const percentagesOfBanknotesInBank = {}
     arrayKeysInObject.forEach( (item) => {
-        percentagesOfBanknotesInBank[item] = (Math.floor(avaliableBanknotes[item] * arrayBanknotes[item] / sumInBank * 10) / 10) || 0;
+        percentagesOfBanknotesInBank[item] = (Math.floor(avaliableBanknotes[item] * arrayBanknotes[item] / sumInBank * 100) / 100) || 0;
     } )
 
-    console.log('проценты',percentagesOfBanknotesInBank);
+    // console.log('проценты',percentagesOfBanknotesInBank);
 
     // Проверка запрошенной суммы в банке. Если сумма в банке меньше запрошенной, то сразу возвращаем результат,
 
@@ -50,7 +50,6 @@ export function parserBanknotes(value, avaliableBanknotesInput) {
 
     if (remains >= 10000) {
         const arraySum = []
-
         arrayKeysInObject.forEach((item) => {
             const valueOfPercendage = remains * percentagesOfBanknotesInBank[item];
             const remainsOfPercantageValue = valueOfPercendage % arrayBanknotes[item];
@@ -78,7 +77,6 @@ export function parserBanknotes(value, avaliableBanknotesInput) {
                 requiredBanknotes[item] += banknotesCount;
             }
         } );
-
 
     return { requiredBanknotes, remains }
 }   

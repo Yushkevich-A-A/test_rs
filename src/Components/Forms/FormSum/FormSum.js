@@ -29,6 +29,12 @@ function FormSum(props) {
     
     const handleChange = (e) => {
         const inputValue = e.target.value.replace(/[^0-9\.]/g, '');
+
+
+        console.log(parseFloat(inputValue));
+        if (parseFloat(inputValue) > 200000) {
+            return setValue(200000);
+        }
         setValue(inputValue);
     }
 
@@ -37,7 +43,12 @@ function FormSum(props) {
         if (val === '.' && value.toString().includes(val)) {
             return;
         }
-        setValue(value.toString() + val);
+        const newValue = value.toString() + val;
+
+        if (parseFloat(newValue) > 200000) {
+            return setValue(200000);
+        }
+        setValue(newValue);
     }
 
     const removeValue = () => {
@@ -45,7 +56,11 @@ function FormSum(props) {
         if (value.length === 0) {
             return;
         }
-        setValue(value.slice(0, value.length - 1));
+        const newValue = value.slice(0, value.length - 1)
+        if (parseFloat(newValue) > 200000) {
+            return setValue(200000);
+        }
+        setValue(newValue);
     }
 
     return (
