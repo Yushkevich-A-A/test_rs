@@ -7,10 +7,15 @@ import { inputRequestSum, withdrawalOfTheAmount } from '../../../reduxFold/actio
 import { parserBanknotes } from '../../../functions/functions';
 
 function FormSum(props) {
-    const { banknotes, inputSum } = useSelector( state => state.serviceBanknotes);
+    const { banknotes, initValueInput } = useSelector( state => state.serviceBanknotes);
     const dispatch = useDispatch();
-    const [ value, setValue ] = useState(inputSum);
+    const [ value, setValue ] = useState(initValueInput);
     const currentRef = useRef(null);
+
+    useEffect(() => {
+        setValue('');
+        // eslint-disable-next-line
+    }, [banknotes])
 
     useEffect(() => {
         if (value === 0) {
@@ -19,17 +24,18 @@ function FormSum(props) {
         const requiredSum = parseFloat(value) || 0;
         const { requiredBanknotes, remains } = parserBanknotes(requiredSum, banknotes);
         dispatch(inputRequestSum( requiredSum, requiredBanknotes, remains ));
+        // eslint-disable-next-line
     }, [value])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(withdrawalOfTheAmount());
-        setValue('');
     }
     
     const handleChange = (e) => {
-        const inputValue = e.target.value.replace(/[^0-9\.]/g, '');s
-        handleSetState(value.slice(0, value.length - 1))
+        // eslint-disable-next-line
+        const inputValue = e.target.value.replace(/[^0-9\.]/g, '');
+        handleSetState(inputValue)
     }
 
     const addValue = (val) => {
@@ -38,8 +44,7 @@ function FormSum(props) {
             return;
         }
         const newValue = value.toString() + val;
-
-        handleSetState(value.slice(0, value.length - 1))
+        handleSetState(newValue);
     }
 
     const removeValue = () => {
@@ -52,9 +57,9 @@ function FormSum(props) {
 
     const handleSetState = (val) => {
         if (parseFloat(val) > 200000) {
-            return setValue(200000);
+            return setValue('200000');
         }
-        setValue(newValue);
+        setValue(val);
     }
 
     return (
@@ -63,6 +68,9 @@ function FormSum(props) {
                 <div className="input-block-field">
                     <label htmlFor="field-sum" className='input-label'>
                         Ведите сумму для снятия
+                    </label>
+                    <label htmlFor="field-sumg" className='input-label-warnin'>
+                        максимальное снятие за один раз 200 000
                     </label>
                     <input className='field-input-sum' name='field-sum' 
                     id='field-sum' value={value} onChange={handleChange}

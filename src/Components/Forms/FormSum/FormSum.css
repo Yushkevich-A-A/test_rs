@@ -24,3 +24,10 @@
     font-weight: 600;
     margin-bottom: 10px;
 }
+
+.input-label-warnin {
+    font-size: 14px;
+    font-weight: 600;
+    color: red;
+    padding: 10px;
+}

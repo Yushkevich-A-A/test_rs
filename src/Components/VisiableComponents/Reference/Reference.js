@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 function Reference(props) {
     const { banknotes } = useSelector( state => state.serviceBanknotes);
-    
     const { handleClick } = props;
 
     return (
@@ -25,7 +24,7 @@ function Reference(props) {
 }
 
 Reference.propTypes = {
-
+    handleClick: PropTypes.func,
 };
 
 export default Reference;

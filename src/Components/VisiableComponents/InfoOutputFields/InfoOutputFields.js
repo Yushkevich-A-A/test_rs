@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 function InfoOutputFields(props) {
@@ -18,9 +17,6 @@ function InfoOutputFields(props) {
         </div>
     )
 }
-InfoOutputFields.propTypes = {
-
-};
 
 export default InfoOutputFields;
 

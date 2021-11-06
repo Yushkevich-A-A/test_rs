@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import './BlockButtonMode.css';
 import ButtonGreen from '../../Buttons/ButtonGreen/ButtonGreen';
 import SetListBanknotes from '../SetListBanknotes/SetListBanknotes';
@@ -18,10 +17,6 @@ function BlockButtonMode(props) {
         </div>
     )
 }
-
-BlockButtonMode.propTypes = {
-
-};
 
 export default BlockButtonMode;
 

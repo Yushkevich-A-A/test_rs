@@ -18,7 +18,8 @@ function Numpad(props) {
 }
 
 Numpad.propTypes = {
-
+    addValue: PropTypes.func,
+    removeValue: PropTypes.func,
 };
 
 export default Numpad;

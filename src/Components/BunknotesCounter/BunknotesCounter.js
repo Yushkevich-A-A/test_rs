@@ -20,7 +20,7 @@ BunknotesCounter.defaultProps = {
 };
 
 BunknotesCounter.propTypes = {
-
+    count: PropTypes.number,
 };
 
 export default BunknotesCounter;

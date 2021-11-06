@@ -20,7 +20,11 @@ function ButtonNumpad(props) {
 }
 
 ButtonNumpad.propTypes = {
-
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    handleClick: PropTypes.func,
 }
 
 export default ButtonNumpad

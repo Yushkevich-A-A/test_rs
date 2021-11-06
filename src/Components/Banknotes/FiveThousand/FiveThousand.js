@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './FiveThousand.css';
 
 function FiveThousand(props) {
@@ -11,10 +10,6 @@ function FiveThousand(props) {
         </div> 
     )
 }
-
-FiveThousand.propTypes = {
-
-};
 
 export default FiveThousand;
 

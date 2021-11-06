@@ -29,7 +29,7 @@ function SetListBanknotes(props) {
 }
 
 SetListBanknotes.propTypes = {
-
+    handleTriggerMode: PropTypes.func,
 };
 
 export default SetListBanknotes;

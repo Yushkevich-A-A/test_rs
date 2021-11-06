@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import './MainPage.css';
 import ButtonGrey from '../../Components/Buttons/ButtonGrey/ButtonGrey';
 import VisionAllBunknotes from '../../Components/VisionAllBunknotes/VisionAllBunknotes';
 import Reference from '../../Components/VisiableComponents/Reference/Reference';
-import ButtonGreen from '../../Components/Buttons/ButtonGreen/ButtonGreen';
-import SetSBanknotes from '../../Components/VisiableComponents/SetListBanknotes/SetListBanknotes';
 import FormSum from '../../Components/Forms/FormSum/FormSum';
 import BlockButtonMode from '../../Components/VisiableComponents/BlockButtonMode/BlockButtonMode';
 import InfoOutputFields from '../../Components/VisiableComponents/InfoOutputFields/InfoOutputFields';
@@ -37,10 +34,6 @@ function MainPage(props) {
         </div>
     )
 }
-
-MainPage.propTypes = {
-
-};
 
 export default MainPage;
 

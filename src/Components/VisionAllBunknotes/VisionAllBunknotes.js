@@ -54,7 +54,7 @@ VisionAllBunknotes.defaultProps = {
 }
 
 VisionAllBunknotes.propTypes = {
-
+    banknotes: PropTypes.object,
 };
 
 export default VisionAllBunknotes;

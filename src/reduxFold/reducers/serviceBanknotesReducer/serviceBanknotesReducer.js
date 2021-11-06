@@ -8,6 +8,7 @@ const initState = {
     sumToIssue: 0,
     cancelleAmount: 0,
     inputSum: 0,
+    initValueInput: '',
     requiredBanknotes: {
         fifty: 0,
         hundred: 0,

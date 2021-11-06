@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './TwoThousand.css';
 
 function TwoThousand(props) {
@@ -11,10 +10,6 @@ function TwoThousand(props) {
         </div> 
     )
 }
-
-TwoThousand.propTypes = {
-
-};
 
 export default TwoThousand;
 

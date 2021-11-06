@@ -13,10 +13,13 @@ function ButtonGreen(props) {
 
 ButtonGreen.defaultProps = {
     typeButton: 'button',
+    name: 'кнопка',
  }
 
 ButtonGreen.propTypes = {
-    
+    name: PropTypes.string,
+    handleClick: PropTypes.func,
+    typeButton: PropTypes.string,
 };
 
 export default ButtonGreen;
