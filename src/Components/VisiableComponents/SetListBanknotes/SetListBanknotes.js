@@ -21,7 +21,6 @@ function SetListBanknotes(props) {
             {
                 setsBancnotesList.map((item, index) => <div className="set-banknotes" 
                     key={item.id} onClick={() => handleClick(index)}>
-                        {console.log(item)}
                     Набор {index + 1}
                     </div>)
             }

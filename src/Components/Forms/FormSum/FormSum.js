@@ -11,7 +11,6 @@ function FormSum(props) {
     const dispatch = useDispatch();
     const [ value, setValue ] = useState(inputSum);
     const currentRef = useRef(null);
-    console.log(inputSum);
 
     useEffect(() => {
         if (value === 0) {

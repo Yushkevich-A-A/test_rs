@@ -27,7 +27,6 @@ export const serviceBanknotesReducer = (state = initState, action) => {
         case 'INPUT_REQUEST_SUM':
             const { inputSum, requiredBanknotes, cancelleAmount } = action.payload;
             const sumToIssue = inputSum - cancelleAmount;
-            console.log(inputSum, requiredBanknotes, cancelleAmount);
             return {...state, inputSum, requiredBanknotes, cancelleAmount, sumToIssue };
         case 'WITHDRAWAL_OF_THE_AMOUNT':
             const requiredBanknotesCount = {};

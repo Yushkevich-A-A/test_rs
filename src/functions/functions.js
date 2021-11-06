@@ -1,4 +1,4 @@
-export function parserBanknotes(value, currentBanknotes) {
+export function parserBanknotes(value, avaliableBanknotesInput) {
     const requiredBanknotes = {
         fifty: 0,
         hundred: 0,
@@ -9,28 +9,78 @@ export function parserBanknotes(value, currentBanknotes) {
         fiveThousand: 0,
     };
 
-    const arrayBanknotes = [5000, 2000, 1000, 500, 200, 100, 50];
+    const avaliableBanknotes = {...avaliableBanknotesInput};
+
+    const arrayBanknotes = {
+        fifty: 50,
+        hundred: 100,
+        twoHundred: 200,
+        fiveHundred: 500,
+        thousand: 1000,
+        twoThousand: 2000,
+        fiveThousand: 5000,
+    };
+
+
     const arrayKeysInObject = Object.keys(requiredBanknotes).reverse();
-    const sumInBank = arrayBanknotes.map(
-        (item, ind) => item * currentBanknotes[arrayKeysInObject[ind]]
+
+    const sumInBank = arrayKeysInObject.map(
+        (item) => arrayBanknotes[item] * avaliableBanknotes[item]
         ).reduce( (sum, acc) => sum + acc, 0 );
+
+    // Получаю процентное соотношение сумм разных купюр в банке
+    const percentagesOfBanknotesInBank = {}
+    arrayKeysInObject.forEach( (item) => {
+        percentagesOfBanknotesInBank[item] = (Math.floor(avaliableBanknotes[item] * arrayBanknotes[item] / sumInBank * 10) / 10) || 0;
+    } )
+
+    console.log('проценты',percentagesOfBanknotesInBank);
+
+    // Проверка запрошенной суммы в банке. Если сумма в банке меньше запрошенной, то сразу возвращаем результат,
+
     if ( sumInBank <= value) {
         const remains = value - sumInBank;;
-        const requiredBanknotes = {...currentBanknotes};
+        const requiredBanknotes = {...avaliableBanknotes};
         return { requiredBanknotes, remains };
     }
 
+    // Проверка суммы доступной к выдаче
+
     let remains = value;
 
-    arrayBanknotes.forEach( (item, index) => {
-        if (remains >= item ) {
-            const textNameBanknotes = arrayKeysInObject[index];
-            const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, item, currentBanknotes[textNameBanknotes] );
-            remains = remainsValue;
-            requiredBanknotes[textNameBanknotes] = banknotesCount;
+    if (remains >= 10000) {
+        const arraySum = []
+
+        arrayKeysInObject.forEach((item) => {
+            const valueOfPercendage = remains * percentagesOfBanknotesInBank[item];
+            const remainsOfPercantageValue = valueOfPercendage % arrayBanknotes[item];
+
+            const countOfBanknotes = (valueOfPercendage - remainsOfPercantageValue) / arrayBanknotes[item];
+
+            requiredBanknotes[item] += (countOfBanknotes >= avaliableBanknotes[item]) ? avaliableBanknotes[item]: countOfBanknotes;
+            arraySum.push(requiredBanknotes[item] * arrayBanknotes[item]);
+        })
+        remains = remains - arraySum.reduce((sum, acc) => sum + acc, 0);
+        if (remains < 0) {
+            debugger;
         }
-    } );
-        return { requiredBanknotes, remains }
+    }
+
+    // обновляю буфер доступных купюр
+
+    arrayKeysInObject.forEach( item => avaliableBanknotes[item] -= requiredBanknotes[item]);
+    
+    // Получение процентного соотношения купюр в банке
+        arrayKeysInObject.forEach( (item) => {
+            if (remains >= arrayBanknotes[item] ) {
+                const { remainsValue, banknotesCount } = getAmountBanknotesAndRemains(remains, arrayBanknotes[item], avaliableBanknotes[item] );
+                remains = remainsValue;
+                requiredBanknotes[item] += banknotesCount;
+            }
+        } );
+
+
+    return { requiredBanknotes, remains }
 }   
 
 // при использовании алгоритма где в равной степени расходуются купюры, эта функция бесполезна
